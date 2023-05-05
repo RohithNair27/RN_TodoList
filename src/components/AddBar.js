@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   intro: {
     position: "absolute",
-    top: 100,
+    top: 90,
     left: 38,
     color: "white",
     fontSize: 25,

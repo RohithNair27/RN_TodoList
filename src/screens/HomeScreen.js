@@ -3,17 +3,25 @@ import { View, Text, StyleSheet } from "react-native";
 import AddBar from "../components/AddBar";
 import { Dimensions } from "react-native";
 import ToDo from "../components/ToDo";
+import { nanoid } from "nanoid/non-secure";
 
 function HomeScreen() {
   const [value, setValue] = useState("");
   const [todo, setTodo] = useState([]);
+  const id = nanoid();
 
   const handleChange = (event) => {
     setValue(event.nativeEvent.text);
   };
 
   const handleSubmit = () => {
-    setTodo([value, ...todo]);
+    setTodo([
+      {
+        id: id,
+        text: value,
+      },
+      ...todo,
+    ]);
     console.log(todo);
     setValue("");
   };
@@ -26,9 +34,8 @@ function HomeScreen() {
           handleSubmit={handleSubmit}
           value={value}
         />
-        <ToDo todo={todo} />
       </View>
-      <View></View>
+      <ToDo todo={todo} />
     </View>
   );
 }
@@ -38,7 +45,8 @@ const windowLength = Dimensions.get("window").height;
 const styles = StyleSheet.create({
   homePage: {
     position: "relative",
-    bottom: 245,
+    elevation: 8,
+    bottom: 30,
     width: windowWidth,
     height: windowLength / 2.5,
     backgroundColor: "#BFB9FA",
