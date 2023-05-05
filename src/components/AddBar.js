@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
-function AddBar({ handleChange }) {
+function AddBar({ handleChange, handleSubmit, value }) {
   return (
     <View>
       <Text style={styles.intro}>{`Hello User 
@@ -9,7 +9,9 @@ What are we doing Today?`}</Text>
       <TextInput
         style={styles.add_view}
         placeholder="Add Task"
+        value={value}
         onChange={handleChange}
+        onEndEditing={handleSubmit}
       ></TextInput>
       <Text style={styles.todo_text}>Here are you ToDos:-</Text>
     </View>

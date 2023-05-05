@@ -1,20 +1,28 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 
-function ToDo({ value }) {
+function ToDo({ todo }) {
   return (
-    <View style={styles.Todo_View}>
-      <Text></Text>
+    <View style={styles.view_todo}>
+      {todo.map((Element, key) => {
+        return <Text style={styles.Todo_View}>{Element}</Text>;
+      })}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  view_todo: {
+    borderWidth: 1,
+    height: 440,
+    position: "relative",
+    top: 250,
+  },
+
   Todo_View: {
+    borderWidth: 1,
     padding: 20,
     position: "relative",
-    top: 300,
-    left: 30,
     width: 330,
     height: 60,
     backgroundColor: "lightgray",

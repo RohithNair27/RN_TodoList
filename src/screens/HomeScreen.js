@@ -6,17 +6,27 @@ import ToDo from "../components/ToDo";
 
 function HomeScreen() {
   const [value, setValue] = useState("");
+  const [todo, setTodo] = useState([]);
 
   const handleChange = (event) => {
-    setValue(event.target.Text);
+    setValue(event.nativeEvent.text);
+  };
+
+  const handleSubmit = () => {
+    setTodo([value, ...todo]);
+    console.log(todo);
+    setValue("");
   };
 
   return (
     <View>
       <View style={styles.homePage}>
-        <AddBar handleChange={handleChange} />
-        {console.log(value)}
-        <ToDo />
+        <AddBar
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          value={value}
+        />
+        <ToDo todo={todo} />
       </View>
       <View></View>
     </View>
