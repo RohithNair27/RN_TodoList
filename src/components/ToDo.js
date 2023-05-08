@@ -1,21 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 
-function ToDo({ todo }) {
-  // return (
-  // <View style={styles.view_todo}>
-  //   {todo.map((Element, key) => {
-  //     return <Text style={styles.Todo_View}>{Element}</Text>;
-  //   })}
-  // </View>
-  // );
+function ToDo({ todo, handleDelete }) {
   return (
     <FlatList
       style={styles.view_todo}
       data={todo}
       keyExtractor={todo.id}
       renderItem={({ item }) => {
-        return <Text style={styles.Todo_View}>{item.text}</Text>;
+        return (
+          <View>
+            <TouchableOpacity onPress={() => handleDelete(item.id)}>
+              <Text style={styles.Todo_View}>{item.text}</Text>
+            </TouchableOpacity>
+          </View>
+        );
       }}
     />
   );

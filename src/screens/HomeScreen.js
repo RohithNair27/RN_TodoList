@@ -22,8 +22,18 @@ function HomeScreen() {
       },
       ...todo,
     ]);
-    console.log(todo);
+
     setValue("");
+  };
+  const handleDelete = (deleteId) => {
+    for (let i = 0; i < todo.length; i++) {
+      if (todo[i].id === deleteId) {
+        todo.splice(i, 1);
+        setTodo([...todo]);
+      } else {
+        continue;
+      }
+    }
   };
 
   return (
@@ -35,7 +45,7 @@ function HomeScreen() {
           value={value}
         />
       </View>
-      <ToDo todo={todo} />
+      <ToDo handleDelete={handleDelete} todo={todo} />
     </View>
   );
 }
