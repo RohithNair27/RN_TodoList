@@ -4,6 +4,7 @@ import AddBar from "../components/AddBar";
 import { Dimensions } from "react-native";
 import ToDo from "../components/ToDo";
 import { nanoid } from "nanoid/non-secure";
+import Footer from "../components/Footer";
 
 function HomeScreen() {
   const [value, setValue] = useState("");
@@ -80,6 +81,7 @@ function HomeScreen() {
         handleComplete={handleComplete}
         handleEdit={handleEdit}
       />
+      <Footer />
     </View>
   );
 }
