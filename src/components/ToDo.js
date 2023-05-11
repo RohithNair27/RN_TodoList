@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 
-function ToDo({ todo, handleDelete }) {
+function ToDo({ todo, handleComplete, handleEdit }) {
   return (
     <FlatList
       style={styles.view_todo}
@@ -16,9 +12,22 @@ function ToDo({ todo, handleDelete }) {
       renderItem={({ item }) => {
         return (
           <View>
-            <TouchableOpacity onPress={() => handleDelete(item.id)}>
-              <Text style={styles.Todo_View}>{item.text}</Text>
-            </TouchableOpacity>
+            <Text style={styles.Todo_View}>{item.text}</Text>
+
+            <Feather
+              style={styles.edit}
+              name="edit"
+              size={24}
+              color="white"
+              onPress={() => handleEdit(item.id)}
+            />
+            <Ionicons
+              style={styles.completed}
+              name="checkmark-done"
+              size={24}
+              color="white"
+              onPress={() => handleComplete(item.id)}
+            />
           </View>
         );
       }}
@@ -35,7 +44,10 @@ const styles = StyleSheet.create({
 
   Todo_View: {
     marginBottom: 10,
-    padding: 15,
+
+    paddingTop: 15,
+    paddingLeft: 20,
+
     position: "relative",
     top: 1,
     width: 330,
@@ -50,6 +62,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.9,
     shadowRadius: 1,
     elevation: 8,
+  },
+  completed: {
+    position: "absolute",
+    left: 320,
+    top: 20,
+  },
+  edit: {
+    position: "absolute",
+    left: 290,
+    top: 20,
   },
 });
 

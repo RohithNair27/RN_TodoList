@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
-function AddBar({ handleChange, handleSubmit, value }) {
+function AddBar({ handleChange, handleSubmit, value, inputRef }) {
   return (
     <View>
       <Text style={styles.intro}>{`Hello User 
 What are we doing Today?`}</Text>
       <TextInput
+        ref={inputRef}
         style={styles.add_view}
         placeholder="Add Task"
         value={value}

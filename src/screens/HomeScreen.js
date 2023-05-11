@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import AddBar from "../components/AddBar";
 import { Dimensions } from "react-native";
@@ -9,23 +9,44 @@ function HomeScreen() {
   const [value, setValue] = useState("");
   const [todo, setTodo] = useState([]);
   const id = nanoid();
+  const inputRef = useRef("");
+
+  //two useState only to handle id
+  const [edit, setEdit] = useState(false);
+  const [editId, setEditId] = useState(0);
 
   const handleChange = (event) => {
     setValue(event.nativeEvent.text);
   };
 
   const handleSubmit = () => {
-    setTodo([
-      {
-        id: id,
-        text: value,
-      },
-      ...todo,
-    ]);
-
+    // for edit
+    if (edit) {
+      const editTask = todo.find((todo) => todo.id === editId);
+      const index = todo.indexOf(editTask);
+      todo[index] = { id: editId, text: value };
+      setTodo[todo];
+      setEdit(false);
+    }
+    //for entering the task
+    else if (value.length > 0) {
+      setTodo([
+        {
+          id: id,
+          text: value,
+        },
+        ...todo,
+      ]);
+    } else {
+      return;
+    }
+    // here the current focus is used to focus on a back to input screen
+    inputRef.current.focus();
+    // this is to make the value of the text to null after the submit
     setValue("");
   };
-  const handleDelete = (deleteId) => {
+
+  const handleComplete = (deleteId) => {
     for (let i = 0; i < todo.length; i++) {
       if (todo[i].id === deleteId) {
         todo.splice(i, 1);
@@ -36,16 +57,29 @@ function HomeScreen() {
     }
   };
 
+  const handleEdit = (editId) => {
+    const editTask = todo.find((todo) => todo.id === editId);
+    inputRef.current.focus();
+    inputRef.current.setNativeProps({ text: editTask.text });
+    setEdit(true);
+    setEditId(editId);
+  };
+
   return (
     <View>
       <View style={styles.homePage}>
         <AddBar
+          inputRef={inputRef}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           value={value}
         />
       </View>
-      <ToDo handleDelete={handleDelete} todo={todo} />
+      <ToDo
+        todo={todo}
+        handleComplete={handleComplete}
+        handleEdit={handleEdit}
+      />
     </View>
   );
 }
