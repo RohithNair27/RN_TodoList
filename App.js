@@ -8,7 +8,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HelloUser">
-        <Stack.Screen name="home" component={HomeScreen} />
+        <Stack.Screen
+          name="home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="completed" component={CompletedTasks} />
       </Stack.Navigator>
     </NavigationContainer>

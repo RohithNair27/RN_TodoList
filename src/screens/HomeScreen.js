@@ -11,7 +11,7 @@ function HomeScreen({ navigation }) {
   const [todo, setTodo] = useState([]);
   const id = nanoid();
   const inputRef = useRef("");
-  const [completed, setCompleted] = useState([null]);
+  const [completed, setCompleted] = useState([]);
 
   //two useState only to handle id
   const [edit, setEdit] = useState(false);
@@ -53,7 +53,6 @@ function HomeScreen({ navigation }) {
       if (todo[i].id === deleteId) {
         const done = todo.splice(i, 1);
         setCompleted([done[0], ...completed]);
-        console.log(completed);
         setTodo([...todo]);
       } else {
         continue;

@@ -1,12 +1,14 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
-function Footer({ navigation }) {
+function Footer({ navigation, completed }) {
   return (
     <View style={styles.footer}>
       <TouchableOpacity
         style={styles.completedTask}
-        onPress={() => navigation.navigate("completed")}
+        onPress={() => {
+          navigation.navigate("completed", { completed });
+        }}
       >
         <Text style={styles.completedText}>Completed tasks</Text>
       </TouchableOpacity>
@@ -23,12 +25,11 @@ const styles = StyleSheet.create({
     padding: 0,
     backgroundColor: "#BFB9FA",
     position: "relative",
-    bottom: 110,
+    bottom: 32,
     width: 395,
     height: 60,
     display: "flex",
     flexDirection: "row",
-    borderWidth: 1,
   },
   completedTask: {
     display: "flex",
