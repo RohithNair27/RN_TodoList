@@ -22,6 +22,7 @@ function Footer({ navigation, completed }) {
 const styles = StyleSheet.create({
   footer: {
     margin: 0,
+
     padding: 0,
     backgroundColor: "#BFB9FA",
     position: "relative",

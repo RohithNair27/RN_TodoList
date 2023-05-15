@@ -1,17 +1,22 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import ToDo from "../components/ToDo";
 
 const CompletedTasks = ({ route }) => {
   const { completed } = route.params;
 
   return (
-    <View>
-      {completed.map((element) => {
-        return <Text key={element.id}>{element.text}</Text>;
-      })}
+    <View style={styles.completedTask}>
+      <ToDo todo={completed} isScreen={true} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  completedTask: {
+    position: "relative",
+    top: 40,
+  },
+});
 
 export default CompletedTasks;

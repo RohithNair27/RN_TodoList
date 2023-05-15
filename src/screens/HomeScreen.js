@@ -84,6 +84,7 @@ function HomeScreen({ navigation }) {
         todo={todo}
         handleComplete={handleComplete}
         handleEdit={handleEdit}
+        isScreen={false}
       />
       <Footer navigation={navigation} completed={completed} />
     </View>
@@ -101,11 +102,6 @@ const styles = StyleSheet.create({
     height: windowLength / 2.5,
     backgroundColor: "#BFB9FA",
     borderRadius: 40,
-  },
-  button: {
-    display: "flex",
-    alignContent: "center",
-    justifyContent: "center",
   },
 });
 export default HomeScreen;
