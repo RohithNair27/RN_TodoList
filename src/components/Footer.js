@@ -1,10 +1,13 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
-function Footer() {
+function Footer({ navigation }) {
   return (
     <View style={styles.footer}>
-      <TouchableOpacity style={styles.completedTask}>
+      <TouchableOpacity
+        style={styles.completedTask}
+        onPress={() => navigation.navigate("completed")}
+      >
         <Text style={styles.completedText}>Completed tasks</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.aboutUs}>
@@ -19,12 +22,13 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
     backgroundColor: "#BFB9FA",
-    elevation: 8,
+    position: "relative",
+    bottom: 110,
     width: 395,
     height: 60,
     display: "flex",
-
     flexDirection: "row",
+    borderWidth: 1,
   },
   completedTask: {
     display: "flex",
@@ -39,7 +43,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    borderRightWidth: 1,
+    borderlefttWidth: 1,
     width: 395 / 2,
     height: 60,
   },

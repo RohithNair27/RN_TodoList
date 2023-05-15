@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import AddBar from "../components/AddBar";
 import { Dimensions } from "react-native";
 import ToDo from "../components/ToDo";
 import { nanoid } from "nanoid/non-secure";
 import Footer from "../components/Footer";
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   const [value, setValue] = useState("");
   const [todo, setTodo] = useState([]);
   const id = nanoid();
   const inputRef = useRef("");
+  const [completed, setCompleted] = useState([null]);
 
   //two useState only to handle id
   const [edit, setEdit] = useState(false);
@@ -50,7 +51,9 @@ function HomeScreen() {
   const handleComplete = (deleteId) => {
     for (let i = 0; i < todo.length; i++) {
       if (todo[i].id === deleteId) {
-        todo.splice(i, 1);
+        const done = todo.splice(i, 1);
+        setCompleted([done[0], ...completed]);
+        console.log(completed);
         setTodo([...todo]);
       } else {
         continue;
@@ -60,7 +63,9 @@ function HomeScreen() {
 
   const handleEdit = (editId) => {
     const editTask = todo.find((todo) => todo.id === editId);
+    //put the focus back to textBox using useRef
     inputRef.current.focus();
+    //put the seleted data into the text bar using useRef
     inputRef.current.setNativeProps({ text: editTask.text });
     setEdit(true);
     setEditId(editId);
@@ -81,7 +86,7 @@ function HomeScreen() {
         handleComplete={handleComplete}
         handleEdit={handleEdit}
       />
-      <Footer />
+      <Footer navigation={navigation} completed={completed} />
     </View>
   );
 }
@@ -97,6 +102,11 @@ const styles = StyleSheet.create({
     height: windowLength / 2.5,
     backgroundColor: "#BFB9FA",
     borderRadius: 40,
+  },
+  button: {
+    display: "flex",
+    alignContent: "center",
+    justifyContent: "center",
   },
 });
 export default HomeScreen;

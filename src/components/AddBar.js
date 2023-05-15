@@ -4,8 +4,8 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 function AddBar({ handleChange, handleSubmit, value, inputRef }) {
   return (
     <View>
-      <Text style={styles.intro}>{`Hello User 
-What are we doing Today?`}</Text>
+      <Text style={styles.intro}>Hello User</Text>
+      <Text style={styles.down_intro}>Enter today's tasks </Text>
       <TextInput
         ref={inputRef}
         style={styles.add_view}
@@ -35,7 +35,14 @@ const styles = StyleSheet.create({
     top: 90,
     left: 38,
     color: "white",
-    fontSize: 25,
+    fontSize: 30,
+  },
+  down_intro: {
+    position: "absolute",
+    top: 140,
+    left: 38,
+    color: "white",
+    fontSize: 20,
   },
   todo_text: {
     position: "absolute",
