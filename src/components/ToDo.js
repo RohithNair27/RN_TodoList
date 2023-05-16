@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 
-function ToDo({ todo, handleComplete, handleEdit, isScreen = true }) {
+function ToDo({ todo, handleComplete, handleEdit, isScreen }) {
   function view_todo_style() {
     if (isScreen) {
       return styles.view_todo_completed;

@@ -7,12 +7,17 @@ function Footer({ navigation, completed }) {
       <TouchableOpacity
         style={styles.completedTask}
         onPress={() => {
-          navigation.navigate("completed", { completed });
+          navigation.navigate("Completed", { completed });
         }}
       >
         <Text style={styles.completedText}>Completed tasks</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.aboutUs}>
+      <TouchableOpacity
+        style={styles.aboutUs}
+        onPress={() => {
+          navigation.navigate("AboutUs");
+        }}
+      >
         <Text style={styles.aboutText}>About us</Text>
       </TouchableOpacity>
     </View>
