@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 
-function ToDo({ todo, handleComplete, handleEdit, isScreen }) {
+function ToDo({
+  todo,
+  handleComplete,
+  handleEdit,
+  isScreen,
+  handleDeleteComplete,
+}) {
   function view_todo_style() {
     if (isScreen) {
       return styles.view_todo_completed;
@@ -22,20 +29,32 @@ function ToDo({ todo, handleComplete, handleEdit, isScreen }) {
           <View>
             <Text style={styles.Todo_View_home}>{item.text}</Text>
 
-            <Feather
-              style={styles.edit}
-              name="edit"
-              size={24}
-              color="white"
-              onPress={() => handleEdit(item.id)}
-            />
-            <Ionicons
-              style={styles.completed}
-              name="checkmark-done"
-              size={24}
-              color="white"
-              onPress={() => handleComplete(item.id)}
-            />
+            {!isScreen ? (
+              <Feather
+                style={styles.edit}
+                name="edit"
+                size={24}
+                color="white"
+                onPress={() => handleEdit(item.id)}
+              />
+            ) : null}
+            {!isScreen ? (
+              <Ionicons
+                style={styles.completed}
+                name="checkmark-done"
+                size={24}
+                color="white"
+                onPress={() => handleComplete(item.id)}
+              />
+            ) : (
+              <MaterialIcons
+                name="delete"
+                size={24}
+                color="white"
+                style={styles.completed}
+                onPress={() => handleDeleteComplete(item.id)}
+              />
+            )}
           </View>
         );
       }}
@@ -50,9 +69,9 @@ const styles = StyleSheet.create({
     bottom: 20,
   },
   view_todo_completed: {
-    height: 700,
+    height: 670,
     position: "relative",
-    bottom: 25,
+    bottom: 39,
   },
 
   Todo_View_home: {

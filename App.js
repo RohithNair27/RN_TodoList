@@ -12,14 +12,18 @@ export default function App() {
         <Stack.Screen
           name="home"
           component={HomeScreen}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="Completed"
           component={CompletedTasks}
           options={{
+            headerShown: false,
             headerStyle: {
               backgroundColor: "#BFB9FA",
+              height: 200,
             },
           }}
         />
@@ -27,6 +31,7 @@ export default function App() {
           name="AboutUs"
           component={AboutUs}
           options={{
+            headerShown: false,
             headerStyle: {
               backgroundColor: "#BFB9FA",
             },
