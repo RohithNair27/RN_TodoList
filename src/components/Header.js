@@ -17,11 +17,14 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 20,
   },
   heading_text: {
     fontSize: 20,
+    fontWeight: "bold",
     color: "white",
     position: "absolute",
+    top: 40,
     right: 175,
   },
 });

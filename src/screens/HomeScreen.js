@@ -12,10 +12,20 @@ function HomeScreen({ navigation }) {
   const id = nanoid();
   const inputRef = useRef("");
   const [completed, setCompleted] = useState([]);
+  const [darkMode, setDarkMode] = useState(true);
 
   //two useState only to handle id
   const [edit, setEdit] = useState(false);
   const [editId, setEditId] = useState(0);
+
+  // changing the dark mode on the home page
+  const darkModeChange = () => {
+    if (darkMode) {
+      return styles.homePage;
+    } else {
+      return styles.homePageDarkMode;
+    }
+  };
 
   const handleChange = (event) => {
     setValue(event.nativeEvent.text);
@@ -70,14 +80,24 @@ function HomeScreen({ navigation }) {
     setEditId(editId);
   };
 
+  // switching darkmode throughout the application
+  const enableDarkMode = () => {
+    if (darkMode) {
+      setDarkMode(false);
+    } else {
+      setDarkMode(true);
+    }
+  };
+
   return (
     <View>
-      <View style={styles.homePage}>
+      <View style={darkModeChange()}>
         <AddBar
           inputRef={inputRef}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           value={value}
+          enableDarkMode={enableDarkMode}
         />
       </View>
       <ToDo
@@ -85,8 +105,13 @@ function HomeScreen({ navigation }) {
         handleComplete={handleComplete}
         handleEdit={handleEdit}
         isScreen={false}
+        DarkMode={darkMode}
       />
-      <Footer navigation={navigation} completed={completed} />
+      <Footer
+        navigation={navigation}
+        completed={completed}
+        darkMode={darkMode}
+      />
     </View>
   );
 }
@@ -101,6 +126,15 @@ const styles = StyleSheet.create({
     width: windowWidth,
     height: windowLength / 2.5,
     backgroundColor: "#BFB9FA",
+    borderRadius: 40,
+  },
+  homePageDarkMode: {
+    position: "relative",
+    elevation: 8,
+    bottom: 30,
+    width: windowWidth,
+    height: windowLength / 2.5,
+    backgroundColor: "#3c3c3c",
     borderRadius: 40,
   },
 });

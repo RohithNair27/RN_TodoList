@@ -1,9 +1,16 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
-function Footer({ navigation, completed }) {
+function Footer({ navigation, completed, darkMode }) {
+  const footerDarkMode = () => {
+    if (darkMode) {
+      return styles.footer;
+    } else {
+      return styles.footer_darkmode;
+    }
+  };
   return (
-    <View style={styles.footer}>
+    <View style={footerDarkMode()}>
       <TouchableOpacity
         style={styles.completedTask}
         onPress={() => {
@@ -37,6 +44,18 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
   },
+  footer_darkmode: {
+    margin: 0,
+
+    padding: 0,
+    backgroundColor: "#3c3c3c",
+    position: "relative",
+    bottom: 32,
+    width: 395,
+    height: 60,
+    display: "flex",
+    flexDirection: "row",
+  },
   completedTask: {
     display: "flex",
     alignItems: "center",
@@ -57,10 +76,12 @@ const styles = StyleSheet.create({
   completedText: {
     color: "white",
     fontSize: 20,
+    fontWeight: "bold",
   },
   aboutText: {
     color: "white",
     fontSize: 20,
+    fontWeight: "bold",
   },
 });
 

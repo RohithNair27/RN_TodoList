@@ -10,12 +10,20 @@ function ToDo({
   handleEdit,
   isScreen,
   handleDeleteComplete,
+  DarkMode,
 }) {
   function view_todo_style() {
     if (isScreen) {
       return styles.view_todo_completed;
     } else {
       return styles.view_todo_home;
+    }
+  }
+  function TodoDarkmode() {
+    if (DarkMode) {
+      return styles.Todo_View_home;
+    } else {
+      return styles.Todo_View_home_darkmode;
     }
   }
 
@@ -27,7 +35,7 @@ function ToDo({
       renderItem={({ item }) => {
         return (
           <View>
-            <Text style={styles.Todo_View_home}>{item.text}</Text>
+            <Text style={TodoDarkmode()}>{item.text}</Text>
 
             {!isScreen ? (
               <Feather
@@ -88,6 +96,27 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
     backgroundColor: "#BFB9FA",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 1,
+    elevation: 8,
+  },
+  Todo_View_home_darkmode: {
+    marginBottom: 10,
+
+    paddingTop: 15,
+    paddingLeft: 20,
+
+    position: "relative",
+    top: 1,
+    width: 330,
+    height: 60,
+    left: 30,
+    fontSize: 20,
+    color: "white",
+    backgroundColor: "#3c3c3c",
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

@@ -6,6 +6,7 @@ import Header from "../components/Header";
 
 const CompletedTasks = ({ route }) => {
   const { completed } = route.params;
+
   const [completed_tasks, setCompleted_tasks] = useState([]);
 
   useEffect(() => {
